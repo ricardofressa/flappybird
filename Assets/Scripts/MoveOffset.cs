@@ -1,13 +1,17 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class ObstaclesBehaviour : MonoBehaviour {
+public class MoveOffset : MonoBehaviour {
 
+	private Material currentMaterial;
 	public float speed;
+	private float offset;
 
 	private GameController gameController;
 
 	void Start () {
+		currentMaterial = GetComponent<Renderer>().material;
+
 		gameController = FindObjectOfType (typeof(GameController)) as GameController;
 	}
 
@@ -18,10 +22,9 @@ public class ObstaclesBehaviour : MonoBehaviour {
 			return;
 		}
 	
-		transform.position += new Vector3 (speed, 0, 0) * Time.deltaTime;
+		offset += 0.001f;
 
-		if (transform.position.x < -5) {
-			gameObject.SetActive (false);
-		}
+		currentMaterial.SetTextureOffset ("_MainTex", new Vector2 (offset * speed, 0));
+
 	}
 }

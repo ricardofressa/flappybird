@@ -16,6 +16,8 @@ public class SpawnController : MonoBehaviour {
 
 	public List<GameObject> tubes;
 
+	private GameController gameController;
+
 	void Start () {
 
 		for (int i = 0; i < maxSpawnTubes; i++) 
@@ -27,10 +29,17 @@ public class SpawnController : MonoBehaviour {
 
 		currentRateSpawn = rateSpawn;
 
+		gameController = FindObjectOfType (typeof(GameController)) as GameController;
+
 	
 	}
 
 	void Update () {
+
+		if (gameController.GetCurrentState () != GameStates.INGAME) 
+		{
+			return;
+		}
 
 		currentRateSpawn += Time.deltaTime;
 		if (currentRateSpawn > rateSpawn) {
