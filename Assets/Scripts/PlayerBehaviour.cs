@@ -35,6 +35,20 @@ public class PlayerBehaviour : MonoBehaviour {
 		}
 
 		animatorPlayer.SetBool ("callFly", inAnim);
+
+		if (GetComponent<Rigidbody2D> ().velocity.y < 0) 
+		{
+			mesh.eulerAngles -= new Vector3 (0, 0, 2f);
+			if (mesh.eulerAngles.z < 330 && mesh.eulerAngles.z > 30)
+				mesh.eulerAngles = new Vector3 (0, 0, 330);
+		}
+		else if(GetComponent<Rigidbody2D>().velocity.y > 0)
+		{
+			mesh.eulerAngles += new Vector3 (0, 0, 2f);
+
+			if (mesh.eulerAngles.z > 30)
+				mesh.eulerAngles = new Vector3 (0, 0, 30);
+		}
 	
 	}
 }
