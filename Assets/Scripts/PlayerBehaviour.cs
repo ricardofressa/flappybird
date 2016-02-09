@@ -10,17 +10,35 @@ public class PlayerBehaviour : MonoBehaviour {
 	private float currentTimeToAnim;
 	private bool inAnim;
 
+	private GameController gameController;
+
 	void Start () {
 		animatorPlayer = mesh.GetComponent<Animator> ();
+
+		gameController = FindObjectOfType (typeof(GameController)) as GameController;
 	}
 	
 	void Update () {
 
-		if (Input.GetMouseButtonDown (0)) 
+		if (Input.GetMouseButtonDown (0) && gameController.GetCurrentState () == GameStates.INGAME) 
 		{
 			inAnim = true;
-			GetComponent<Rigidbody2D>().velocity = Vector2.zero;
-			GetComponent<Rigidbody2D>().AddForce (new Vector2 (0, 1) * forceFly);
+			GetComponent<Rigidbody2D> ().velocity = Vector2.zero;
+			GetComponent<Rigidbody2D> ().AddForce (new Vector2 (0, 1) * forceFly);
+		} 
+		else if(Input.GetMouseButtonDown(0))
+		{
+				gameController.StartGame();
+		}
+
+		if (gameController.GetCurrentState() != GameStates.INGAME) 
+		{
+			GetComponent<Rigidbody2D>().gravityScale = 0;
+			return;
+		}
+		else
+		{
+				GetComponent<Rigidbody2D>().gravityScale = 1;
 		}
 
 		if (inAnim) 
