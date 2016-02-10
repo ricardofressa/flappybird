@@ -50,11 +50,30 @@ public class GameController : MonoBehaviour {
 		}
 	}
 
-	public void StartGame(){
+	public void StartGame()
+	{
 		currentState = GameStates.INGAME;
 	}
 
-	public GameStates GetCurrentState(){
+	public GameStates GetCurrentState()
+	{
 		return currentState;
 	}
+
+	public void CallGameOver()
+	{
+		currentState = GameStates.GAMEOVER;
+		ResetGame ();
+	}
+
+	private void ResetGame()
+	{
+		player.position = startPositionPlayer;
+		foreach (ObstaclesBehaviour ob in FindObjectOfType(typeof(ObstaclesBehaviour)) as ObstaclesBehaviour) 
+		{
+			ob.gameObject.SetActive (false);
+		}
+	}
+
+
 }

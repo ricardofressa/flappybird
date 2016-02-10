@@ -31,7 +31,8 @@ public class PlayerBehaviour : MonoBehaviour {
 				gameController.StartGame();
 		}
 
-		if (gameController.GetCurrentState() != GameStates.INGAME) 
+		if (gameController.GetCurrentState() != GameStates.INGAME && 
+			gameController.GetCurrentState() != GameStates.GAMEOVER) 
 		{
 			GetComponent<Rigidbody2D>().gravityScale = 0;
 			return;
@@ -68,5 +69,10 @@ public class PlayerBehaviour : MonoBehaviour {
 				mesh.eulerAngles = new Vector3 (0, 0, 30);
 		}
 	
+	}
+
+	void OnCollisionEnter2D(Collision2D coll)
+	{
+		gameController.CallGameOver ();
 	}
 }
