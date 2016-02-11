@@ -17,6 +17,9 @@ public class GameController : MonoBehaviour {
 
 	private GameStates currentState = GameStates.START;
 
+	public TextMesh number;
+	public TextMesh shadow;
+
 	void Start () {
 
 		startPositionPlayer = player.position;
