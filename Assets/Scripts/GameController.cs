@@ -5,7 +5,8 @@ public enum GameStates {
 	START,
 	WAITGAME,
 	INGAME,
-	GAMEOVER
+	GAMEOVER,
+	RANKING
 }
 
 public class GameController : MonoBehaviour {
@@ -42,7 +43,12 @@ public class GameController : MonoBehaviour {
 			break;
 		case GameStates.GAMEOVER:
 			{
-				
+				currentState = GameStates.RANKING;
+			}
+			break;
+		case GameStates.RANKING:
+			{
+				player.position = startPositionPlayer;
 			}
 			break;
 		default:
@@ -69,10 +75,12 @@ public class GameController : MonoBehaviour {
 	private void ResetGame()
 	{
 		player.position = startPositionPlayer;
-		foreach (ObstaclesBehaviour ob in FindObjectOfType(typeof(ObstaclesBehaviour)) as ObstaclesBehaviour) 
+		ObstaclesBehaviour[] pipes = FindObjectsOfType (typeof(ObstaclesBehaviour)) as ObstaclesBehaviour[];
+		foreach (ObstaclesBehaviour ob in pipes) 
 		{
 			ob.gameObject.SetActive (false);
 		}
+
 	}
 
 
