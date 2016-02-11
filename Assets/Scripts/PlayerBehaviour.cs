@@ -74,5 +74,6 @@ public class PlayerBehaviour : MonoBehaviour {
 	void OnCollisionEnter2D(Collision2D coll)
 	{
 		gameController.CallGameOver ();
+		mesh.eulerAngles += new Vector3 (0, 0, 0);
 	}
 }
