@@ -17,8 +17,10 @@ public class GameController : MonoBehaviour {
 
 	private GameStates currentState = GameStates.START;
 
-	public TextMesh number;
-	public TextMesh shadow;
+	public TextMesh numberScore;
+	public TextMesh shadowScore;
+
+	private int score;
 
 	void Start () {
 
@@ -32,15 +34,19 @@ public class GameController : MonoBehaviour {
 			{
 				player.position = startPositionPlayer;
 				currentState = GameStates.WAITGAME;
+				score = 0;
 			}
 			break;
 		case GameStates.WAITGAME:
 			{
 				player.position = startPositionPlayer;
+
 			}
 			break;
 		case GameStates.INGAME:
 			{
+				numberScore.text = score.ToString ();
+				shadowScore.text = score.ToString ();
 				
 			}
 			break;
@@ -52,6 +58,8 @@ public class GameController : MonoBehaviour {
 		case GameStates.RANKING:
 			{
 				player.position = startPositionPlayer;
+				numberScore.GetComponent<Renderer>().enabled = false;
+				shadowScore.GetComponent<Renderer>().enabled = false;
 			}
 			break;
 		default:
@@ -62,6 +70,8 @@ public class GameController : MonoBehaviour {
 	public void StartGame()
 	{
 		currentState = GameStates.INGAME;
+		numberScore.GetComponent<Renderer>().enabled = true;
+		shadowScore.GetComponent<Renderer>().enabled = true;
 	}
 
 	public GameStates GetCurrentState()
@@ -84,6 +94,10 @@ public class GameController : MonoBehaviour {
 			ob.gameObject.SetActive (false);
 		}
 
+	}
+
+	public void AddScore(){
+		score++;
 	}
 
 

@@ -7,6 +7,8 @@ public class ObstaclesBehaviour : MonoBehaviour {
 
 	private GameController gameController;
 
+	private bool passed;
+
 	void Start () {
 		gameController = FindObjectOfType (typeof(GameController)) as GameController;
 	}
@@ -20,8 +22,20 @@ public class ObstaclesBehaviour : MonoBehaviour {
 	
 		transform.position += new Vector3 (speed, 0, 0) * Time.deltaTime;
 
-		if (transform.position.x < -5) {
+		if (transform.position.x < -5) 
+		{
 			gameObject.SetActive (false);
 		}
+
+		if (transform.position.x < gameController.transform.position.x && !passed) 
+		{
+			passed = true;
+			gameController.AddScore ();
+		}
+	}
+
+	void OnEnable()
+	{
+		passed = false;
 	}
 }
