@@ -20,6 +20,9 @@ public class GameController : MonoBehaviour {
 	public TextMesh numberScore;
 	public TextMesh shadowScore;
 
+	public float timeToRestart;
+	private float currentTimeToRestart;
+
 	private int score;
 
 	void Start () {
@@ -34,7 +37,6 @@ public class GameController : MonoBehaviour {
 			{
 				player.position = startPositionPlayer;
 				currentState = GameStates.WAITGAME;
-				score = 0;
 			}
 			break;
 		case GameStates.WAITGAME:
@@ -52,7 +54,18 @@ public class GameController : MonoBehaviour {
 			break;
 		case GameStates.GAMEOVER:
 			{
-				currentState = GameStates.RANKING;
+				currentTimeToRestart += Time.deltaTime;
+				if (currentTimeToRestart > timeToRestart) 
+				{
+					currentTimeToRestart = 0;
+					currentState = GameStates.RANKING;
+					numberScore.GetComponent<Renderer>().enabled = false;
+					shadowScore.GetComponent<Renderer>().enabled = false;
+					numberScore.text = score.ToString ();
+					shadowScore.text = score.ToString ();
+					ResetGame ();
+				}
+
 			}
 			break;
 		case GameStates.RANKING:
@@ -72,6 +85,7 @@ public class GameController : MonoBehaviour {
 		currentState = GameStates.INGAME;
 		numberScore.GetComponent<Renderer>().enabled = true;
 		shadowScore.GetComponent<Renderer>().enabled = true;
+		score = 0;
 	}
 
 	public GameStates GetCurrentState()
@@ -82,7 +96,6 @@ public class GameController : MonoBehaviour {
 	public void CallGameOver()
 	{
 		currentState = GameStates.GAMEOVER;
-		ResetGame ();
 	}
 
 	private void ResetGame()
