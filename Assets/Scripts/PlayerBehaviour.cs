@@ -12,21 +12,26 @@ public class PlayerBehaviour : MonoBehaviour {
 
 	private GameController gameController;
 
+	public RigidbodyConstraints2D constraints;
+
 	void Start () {
 		animatorPlayer = mesh.GetComponent<Animator> ();
 
 		gameController = FindObjectOfType (typeof(GameController)) as GameController;
+		GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeRotation;
 	}
 	
 	void Update () {
 
-		if (Input.GetMouseButtonDown (0) && gameController.GetCurrentState () == GameStates.INGAME) 
+		if (Input.GetMouseButtonDown (0) && gameController.GetCurrentState () == GameStates.INGAME &&
+			gameController.GetCurrentState() != GameStates.GAMEOVER) 
 		{
 			inAnim = true;
 			GetComponent<Rigidbody2D> ().velocity = Vector2.zero;
 			GetComponent<Rigidbody2D> ().AddForce (new Vector2 (0, 1) * forceFly);
 		} 
-		else if(Input.GetMouseButtonDown(0))
+		else if(Input.GetMouseButtonDown(0) &&
+			gameController.GetCurrentState() != GameStates.GAMEOVER)
 		{
 				gameController.StartGame();
 		}
@@ -55,19 +60,23 @@ public class PlayerBehaviour : MonoBehaviour {
 
 		animatorPlayer.SetBool ("callFly", inAnim);
 
-		if (GetComponent<Rigidbody2D> ().velocity.y < 0) 
-		{
-			mesh.eulerAngles -= new Vector3 (0, 0, 2f);
-			if (mesh.eulerAngles.z < 330 && mesh.eulerAngles.z > 30)
-				mesh.eulerAngles = new Vector3 (0, 0, 330);
-		}
-		else if(GetComponent<Rigidbody2D>().velocity.y > 0)
-		{
-			mesh.eulerAngles += new Vector3 (0, 0, 2f);
+		if (gameController.GetCurrentState () == GameStates.INGAME) {
 
-			if (mesh.eulerAngles.z > 30)
-				mesh.eulerAngles = new Vector3 (0, 0, 30);
+			if (GetComponent<Rigidbody2D> ().velocity.y < 0) 
+			{
+				mesh.eulerAngles -= new Vector3 (0, 0, 2f);
+				if (mesh.eulerAngles.z < 330 && mesh.eulerAngles.z > 30)
+					mesh.eulerAngles = new Vector3 (0, 0, 330);
+			}
+			else if(GetComponent<Rigidbody2D>().velocity.y > 0)
+			{
+				mesh.eulerAngles += new Vector3 (0, 0, 2f);
+
+				if (mesh.eulerAngles.z > 30)
+					mesh.eulerAngles = new Vector3 (0, 0, 30);
+			}
 		}
+			
 	
 	}
 
