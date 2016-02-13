@@ -62,19 +62,20 @@ public class PlayerBehaviour : MonoBehaviour {
 
 		if (gameController.GetCurrentState () == GameStates.INGAME) {
 
-			if (GetComponent<Rigidbody2D> ().velocity.y < 0) 
-			{
-				mesh.eulerAngles -= new Vector3 (0, 0, 2f);
-				if (mesh.eulerAngles.z < 330 && mesh.eulerAngles.z > 30)
-					mesh.eulerAngles = new Vector3 (0, 0, 330);
-			}
-			else if(GetComponent<Rigidbody2D>().velocity.y > 0)
-			{
+			if (GetComponent<Rigidbody2D> ().velocity.y < 0) {
+				mesh.eulerAngles -= new Vector3 (0, 0, 5f);
+				if (mesh.eulerAngles.z < 270 && mesh.eulerAngles.z > 30)
+					mesh.eulerAngles = new Vector3 (0, 0, 270);
+			} else if (GetComponent<Rigidbody2D> ().velocity.y > 0) {
 				mesh.eulerAngles += new Vector3 (0, 0, 2f);
 
 				if (mesh.eulerAngles.z > 30)
 					mesh.eulerAngles = new Vector3 (0, 0, 30);
 			}
+		} else if (gameController.GetCurrentState() == GameStates.GAMEOVER) {
+			mesh.eulerAngles -= new Vector3 (0, 0, 5f);
+			if (mesh.eulerAngles.z < 270 && mesh.eulerAngles.z > 30)
+				mesh.eulerAngles = new Vector3 (0, 0, 270);
 		}
 			
 	
@@ -83,6 +84,10 @@ public class PlayerBehaviour : MonoBehaviour {
 	void OnCollisionEnter2D(Collision2D coll)
 	{
 		gameController.CallGameOver ();
-		mesh.eulerAngles = new Vector3 (0, 0, 0);
+	}
+
+	void OnTriggerEnter2D(Collider2D coll)
+	{
+		gameController.CallGameOver ();
 	}
 }
