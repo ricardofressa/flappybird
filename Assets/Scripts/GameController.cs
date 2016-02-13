@@ -61,6 +61,7 @@ public class GameController : MonoBehaviour {
 				if (currentTimeToRestart > timeToRestart) 
 				{
 					currentTimeToRestart = 0;
+					gameOverController.SetGameOver (score);
 					currentState = GameStates.RANKING;
 				}
 
@@ -70,7 +71,6 @@ public class GameController : MonoBehaviour {
 			{
 				numberScore.GetComponent<Renderer>().enabled = false;
 				shadowScore.GetComponent<Renderer>().enabled = false;
-				gameOverController.SetGameOver (score);
 				numberScore.text = score.ToString ();
 				shadowScore.text = score.ToString ();
 			}

@@ -8,8 +8,8 @@ public class GameOverController : MonoBehaviour {
 	public Renderer[] medals;
 
 	public GameObject content;
-
 	public GameObject title;
+	public GameObject newscore;
 
 	void Start () {
 
@@ -26,7 +26,13 @@ public class GameOverController : MonoBehaviour {
 		if (scoreInGame > PlayerPrefs.GetInt ("Score")) 
 		{
 			PlayerPrefs.SetInt ("Score", scoreInGame);
+			newscore.SetActive (true);
+		} 
+		else
+		{
+			newscore.SetActive (false);
 		}
+			
 
 		score.text = scoreInGame.ToString ();
 		bestscore.text = PlayerPrefs.GetInt ("Score").ToString ();
