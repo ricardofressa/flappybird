@@ -27,7 +27,7 @@ public class ObstaclesBehaviour : MonoBehaviour {
 			gameObject.SetActive (false);
 		}
 
-		if (transform.position.x < gameController.transform.position.x && !passed) 
+		if (transform.position.x < gameController.player.transform.position.x && !passed) 
 		{
 			passed = true;
 			gameController.AddScore ();
