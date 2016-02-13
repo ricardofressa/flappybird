@@ -25,7 +25,11 @@ public class GameController : MonoBehaviour {
 
 	private int score;
 
+	private GameOverController gameOverController;
+
 	void Start () {
+
+		gameOverController = FindObjectOfType(typeof(GameOverController)) as GameOverController;
 
 		startPositionPlayer = player.position;
 	}
@@ -64,6 +68,7 @@ public class GameController : MonoBehaviour {
 					numberScore.text = score.ToString ();
 					shadowScore.text = score.ToString ();
 					ResetGame ();
+					gameOverController.SetGameOver (score);
 				}
 
 			}
@@ -86,6 +91,7 @@ public class GameController : MonoBehaviour {
 		numberScore.GetComponent<Renderer>().enabled = true;
 		shadowScore.GetComponent<Renderer>().enabled = true;
 		score = 0;
+		gameOverController.HideGameOver ();
 	}
 
 	public GameStates GetCurrentState()
