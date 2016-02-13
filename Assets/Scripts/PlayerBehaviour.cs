@@ -33,7 +33,8 @@ public class PlayerBehaviour : MonoBehaviour {
 		else if(Input.GetMouseButtonDown(0) &&
 			gameController.GetCurrentState() != GameStates.GAMEOVER)
 		{
-				gameController.StartGame();
+			gameController.ResetGame ();
+			gameController.StartGame();
 		}
 
 		Vector3 positionPlayer = transform.position;

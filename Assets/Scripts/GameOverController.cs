@@ -9,6 +9,8 @@ public class GameOverController : MonoBehaviour {
 
 	public GameObject content;
 
+	public GameObject title;
+
 	void Start () {
 
 		HideGameOver ();
@@ -29,21 +31,24 @@ public class GameOverController : MonoBehaviour {
 		score.text = scoreInGame.ToString ();
 		bestscore.text = PlayerPrefs.GetInt ("Score").ToString ();
 
-		if (PlayerPrefs.GetInt ("Score") > 10) {
+		if (scoreInGame >= 1) {
 			medals [0].enabled = true;
-		} else if (PlayerPrefs.GetInt ("Score") > 20) {
+		} else if (scoreInGame >= 20) {
 			medals [1].enabled = true;
-		} else if (PlayerPrefs.GetInt ("Score") > 30) {
+		} else if (scoreInGame >= 30) {
 			medals [2].enabled = true;
-		} else if (PlayerPrefs.GetInt ("Score") > 40) {
+		} else if (scoreInGame >= 40) {
 			medals [3].enabled = true;
 		}
 
 		content.SetActive (true);
+		title.SetActive (true);
+
 	}
 
 	public void HideGameOver()
 	{
+		title.SetActive (false);
 		content.SetActive (false);
 		foreach (Renderer m in medals) {
 			m.enabled = false;

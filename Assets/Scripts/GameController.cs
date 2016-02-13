@@ -52,8 +52,7 @@ public class GameController : MonoBehaviour {
 		case GameStates.INGAME:
 			{
 				numberScore.text = score.ToString ();
-				shadowScore.text = score.ToString ();
-				
+				shadowScore.text = score.ToString ();			
 			}
 			break;
 		case GameStates.GAMEOVER:
@@ -63,21 +62,17 @@ public class GameController : MonoBehaviour {
 				{
 					currentTimeToRestart = 0;
 					currentState = GameStates.RANKING;
-					numberScore.GetComponent<Renderer>().enabled = false;
-					shadowScore.GetComponent<Renderer>().enabled = false;
-					numberScore.text = score.ToString ();
-					shadowScore.text = score.ToString ();
-					ResetGame ();
-					gameOverController.SetGameOver (score);
 				}
 
 			}
 			break;
 		case GameStates.RANKING:
 			{
-				player.position = startPositionPlayer;
 				numberScore.GetComponent<Renderer>().enabled = false;
 				shadowScore.GetComponent<Renderer>().enabled = false;
+				gameOverController.SetGameOver (score);
+				numberScore.text = score.ToString ();
+				shadowScore.text = score.ToString ();
 			}
 			break;
 		default:
@@ -104,7 +99,7 @@ public class GameController : MonoBehaviour {
 		currentState = GameStates.GAMEOVER;
 	}
 
-	private void ResetGame()
+	public void ResetGame()
 	{
 		player.position = startPositionPlayer;
 		player.GetComponent<PlayerBehaviour> ().RestartRotation ();
