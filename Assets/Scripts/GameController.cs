@@ -107,6 +107,7 @@ public class GameController : MonoBehaviour {
 	private void ResetGame()
 	{
 		player.position = startPositionPlayer;
+		player.GetComponent<PlayerBehaviour> ().RestartRotation ();
 		ObstaclesBehaviour[] pipes = FindObjectsOfType (typeof(ObstaclesBehaviour)) as ObstaclesBehaviour[];
 		foreach (ObstaclesBehaviour ob in pipes) 
 		{

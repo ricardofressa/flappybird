@@ -36,6 +36,13 @@ public class PlayerBehaviour : MonoBehaviour {
 				gameController.StartGame();
 		}
 
+		Vector3 positionPlayer = transform.position;
+
+		if (positionPlayer.y > 3) {
+			positionPlayer.y = 3;
+			transform.position = positionPlayer;
+		}
+
 		if (gameController.GetCurrentState() != GameStates.INGAME && 
 			gameController.GetCurrentState() != GameStates.GAMEOVER) 
 		{
@@ -89,5 +96,10 @@ public class PlayerBehaviour : MonoBehaviour {
 	void OnTriggerEnter2D(Collider2D coll)
 	{
 		gameController.CallGameOver ();
+	}
+
+	public void RestartRotation()
+	{
+		mesh.eulerAngles = new Vector3 (0, 0, 0);
 	}
 }
