@@ -37,23 +37,25 @@ public class GameOverController : MonoBehaviour {
 		score.text = scoreInGame.ToString ();
 		bestscore.text = PlayerPrefs.GetInt ("Score").ToString ();
 
-		if (scoreInGame >= 1) {
+		if (scoreInGame >= 10 && scoreInGame <= 24) {
 			medals [0].enabled = true;
-		} else if (scoreInGame >= 20) {
+		} else if (scoreInGame >= 25 && scoreInGame <= 34) {
 			medals [1].enabled = true;
-		} else if (scoreInGame >= 30) {
+		} else if (scoreInGame >= 35 && scoreInGame <= 49) {
 			medals [2].enabled = true;
-		} else if (scoreInGame >= 40) {
+		} else if (scoreInGame >= 50) {
 			medals [3].enabled = true;
 		}
 
 		content.SetActive (true);
 		title.SetActive (true);
+		SoundController.PlaySound (SoundController.soundsGame.die);
 
 	}
 
 	public void HideGameOver()
 	{
+		SoundController.PlaySound (SoundController.soundsGame.menu);
 		title.SetActive (false);
 		content.SetActive (false);
 		foreach (Renderer m in medals) {
