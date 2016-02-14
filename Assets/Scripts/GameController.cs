@@ -61,7 +61,6 @@ public class GameController : MonoBehaviour {
 				if (currentTimeToRestart > timeToRestart) 
 				{
 					currentTimeToRestart = 0;
-					SoundController.PlaySound (SoundController.soundsGame.die);
 					gameOverController.SetGameOver (score);
 					currentState = GameStates.RANKING;
 				}

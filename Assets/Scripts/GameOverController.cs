@@ -55,7 +55,6 @@ public class GameOverController : MonoBehaviour {
 
 	public void HideGameOver()
 	{
-		SoundController.PlaySound (SoundController.soundsGame.menu);
 		title.SetActive (false);
 		content.SetActive (false);
 		foreach (Renderer m in medals) {

@@ -69,19 +69,23 @@ public class PlayerBehaviour : MonoBehaviour {
 
 		animatorPlayer.SetBool ("callFly", inAnim);
 
-		if (gameController.GetCurrentState () == GameStates.INGAME) {
-
-			if (GetComponent<Rigidbody2D> ().velocity.y < 0) {
+		if (gameController.GetCurrentState () == GameStates.INGAME) 
+		{
+			if (GetComponent<Rigidbody2D> ().velocity.y < 0) 
+			{
 				mesh.eulerAngles -= new Vector3 (0, 0, 5f);
 				if (mesh.eulerAngles.z < 270 && mesh.eulerAngles.z > 30)
 					mesh.eulerAngles = new Vector3 (0, 0, 270);
-			} else if (GetComponent<Rigidbody2D> ().velocity.y > 0) {
+			} 
+			else if (GetComponent<Rigidbody2D> ().velocity.y > 0) 
+			{
 				mesh.eulerAngles += new Vector3 (0, 0, 2f);
-
 				if (mesh.eulerAngles.z > 30)
 					mesh.eulerAngles = new Vector3 (0, 0, 30);
 			}
-		} else if (gameController.GetCurrentState() == GameStates.GAMEOVER) {
+		} 
+		else if (gameController.GetCurrentState() == GameStates.GAMEOVER) 
+		{
 			mesh.eulerAngles -= new Vector3 (0, 0, 5f);
 			if (mesh.eulerAngles.z < 270 && mesh.eulerAngles.z > 30)
 				mesh.eulerAngles = new Vector3 (0, 0, 270);
