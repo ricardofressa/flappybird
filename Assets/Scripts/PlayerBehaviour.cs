@@ -8,7 +8,7 @@ public class PlayerBehaviour : MonoBehaviour {
 	private Animator animatorPlayer;
 
 	private float currentTimeToAnim;
-	private bool inAnim;
+	private bool inAnim = true;
 
 	private GameController gameController;
 
@@ -32,10 +32,16 @@ public class PlayerBehaviour : MonoBehaviour {
 
 			SoundController.PlaySound (SoundController.soundsGame.wing);
 		} 
-		else if (Input.GetMouseButtonDown (0) && gameController.GetCurrentState () == GameStates.WAITGAME) 
+		else if (Input.GetMouseButtonDown (0) && 
+			gameController.GetCurrentState () == GameStates.TUTORIAL && 
+			gameController.CanPlay()) 
 		{
 			Restart ();
+			gameController.StartGame ();
+			GetComponent<Rigidbody2D> ().AddForce (new Vector2 (0, 1) * forceFly);
 		}
+
+		animatorPlayer.SetBool ("callFly", inAnim);
 
 		Vector3 positionPlayer = transform.position;
 
@@ -43,6 +49,11 @@ public class PlayerBehaviour : MonoBehaviour {
 		{
 			positionPlayer.y = 3;
 			transform.position = positionPlayer;
+		}
+
+		if (gameController.GetCurrentState () == GameStates.TUTORIAL) 
+		{
+			inAnim = true;
 		}
 
 		if (gameController.GetCurrentState() != GameStates.INGAME && 
@@ -55,19 +66,17 @@ public class PlayerBehaviour : MonoBehaviour {
 		{
 				GetComponent<Rigidbody2D>().gravityScale = 1;
 		}
-
-		if (inAnim) 
+			
+		if (inAnim && gameController.GetCurrentState () != GameStates.TUTORIAL) 
 		{
 			currentTimeToAnim += Time.deltaTime;
 
-			if (currentTimeToAnim > 0.2f) 
-			{
+			if (currentTimeToAnim > 0.2f) {
 				currentTimeToAnim = 0;
 				inAnim = false;
 			}
 		}
 
-		animatorPlayer.SetBool ("callFly", inAnim);
 
 		if (gameController.GetCurrentState () == GameStates.INGAME) 
 		{
@@ -114,7 +123,7 @@ public class PlayerBehaviour : MonoBehaviour {
 		if(gameController.GetCurrentState() != GameStates.GAMEOVER)
 		{
 			gameController.ResetGame ();
-			gameController.StartGame();
+			gameController.StartGame ();
 		}
 
 	}
