@@ -24,17 +24,23 @@ public class PlayerBehaviour : MonoBehaviour {
 	void Update () {
 
 		if (Input.GetMouseButtonDown (0) && gameController.GetCurrentState () == GameStates.INGAME &&
-		    gameController.GetCurrentState () != GameStates.GAMEOVER) {
+		    gameController.GetCurrentState () != GameStates.GAMEOVER) 
+		{
 			inAnim = true;
 			GetComponent<Rigidbody2D> ().velocity = Vector2.zero;
 			GetComponent<Rigidbody2D> ().AddForce (new Vector2 (0, 1) * forceFly);
-		} else if (Input.GetMouseButtonDown (0) && gameController.GetCurrentState () == GameStates.WAITGAME) {
+
+			SoundController.PlaySound (SoundController.soundsGame.wing);
+		} 
+		else if (Input.GetMouseButtonDown (0) && gameController.GetCurrentState () == GameStates.WAITGAME) 
+		{
 			Restart ();
 		}
 
 		Vector3 positionPlayer = transform.position;
 
-		if (positionPlayer.y > 3) {
+		if (positionPlayer.y > 3)
+		{
 			positionPlayer.y = 3;
 			transform.position = positionPlayer;
 		}

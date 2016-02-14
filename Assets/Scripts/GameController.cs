@@ -61,6 +61,7 @@ public class GameController : MonoBehaviour {
 				if (currentTimeToRestart > timeToRestart) 
 				{
 					currentTimeToRestart = 0;
+					SoundController.PlaySound (SoundController.soundsGame.die);
 					gameOverController.SetGameOver (score);
 					currentState = GameStates.RANKING;
 				}
@@ -96,6 +97,9 @@ public class GameController : MonoBehaviour {
 
 	public void CallGameOver()
 	{
+		if(currentState != GameStates.GAMEOVER)
+			SoundController.PlaySound (SoundController.soundsGame.hit);
+
 		currentState = GameStates.GAMEOVER;
 	}
 
@@ -113,6 +117,7 @@ public class GameController : MonoBehaviour {
 
 	public void AddScore(){
 		score++;
+		SoundController.PlaySound (SoundController.soundsGame.point);
 	}
 
 

@@ -49,11 +49,13 @@ public class GameOverController : MonoBehaviour {
 
 		content.SetActive (true);
 		title.SetActive (true);
+		SoundController.PlaySound (SoundController.soundsGame.die);
 
 	}
 
 	public void HideGameOver()
 	{
+		SoundController.PlaySound (SoundController.soundsGame.menu);
 		title.SetActive (false);
 		content.SetActive (false);
 		foreach (Renderer m in medals) {
