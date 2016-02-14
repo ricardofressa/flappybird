@@ -17,7 +17,9 @@ public class MoveOffset : MonoBehaviour {
 
 	void Update () {
 
-		if (gameController.GetCurrentState () != GameStates.INGAME) 
+		if (gameController.GetCurrentState () != GameStates.INGAME &&
+			gameController.GetCurrentState () != GameStates.MAINMENU &&
+			gameController.GetCurrentState () != GameStates.TUTORIAL) 
 		{
 			return;
 		}

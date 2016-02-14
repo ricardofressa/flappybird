@@ -18,8 +18,4 @@ public class ButtonMessageBehaviour : MonoBehaviour {
 			target.SendMessage (message, SendMessageOptions.RequireReceiver);
 		}
 	}
-	void Update ()
-	{
-	
-	}
 }
