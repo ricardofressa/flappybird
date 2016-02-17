@@ -11,6 +11,8 @@ public class GameOverController : MonoBehaviour {
 	public GameObject title;
 	public GameObject newscore;
 
+	public GameObject fadeObject;
+
 	void Start () {
 
 		HideGameOver ();
@@ -49,7 +51,7 @@ public class GameOverController : MonoBehaviour {
 
 		content.SetActive (true);
 		title.SetActive (true);
-		SoundController.PlaySound (SoundController.soundsGame.die);
+		SoundController.PlaySound (SoundController.soundsGame.menu);
 
 	}
 
@@ -60,5 +62,11 @@ public class GameOverController : MonoBehaviour {
 		foreach (Renderer m in medals) {
 			m.enabled = false;
 		}
+		fadeObject.SetActive (false);
+	}
+
+	public void ShowFade()
+	{
+		fadeObject.SetActive (true);
 	}
 }
