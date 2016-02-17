@@ -11,6 +11,8 @@ public class GameOverController : MonoBehaviour {
 	public GameObject title;
 	public GameObject newscore;
 
+	public GameObject fadeObject;
+
 	void Start () {
 
 		HideGameOver ();
