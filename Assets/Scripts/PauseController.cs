@@ -22,13 +22,22 @@ public class PauseController : MonoBehaviour {
 	
 	void OnGUI()
 	{
-		if (gameController.GetCurrentState () != GameStates.INGAME)
+		if (gameController.GetCurrentState () == GameStates.INGAME)
 		{
 			if (!isPaused) 
 			{
-				if (GUI.Button (new Rect (0, 0, sizeButton, sizeButton), pauseImage)) 
+				if (GUI.Button (new Rect (0, 0, sizeButton, sizeButton), pauseImage, GUIStyle.none))
 				{
 					isPaused = true;
+					Time.timeScale = 0;
+				}
+			} 
+			else
+			{
+				if (GUI.Button (new Rect (0, 0, sizeButton, sizeButton), startImage, GUIStyle.none)) 
+				{
+					isPaused = false;
+					Time.timeScale = 1;
 				}
 			}
 		}
