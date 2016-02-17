@@ -62,5 +62,13 @@ public class GameOverController : MonoBehaviour {
 		foreach (Renderer m in medals) {
 			m.enabled = false;
 		}
+
+		fadeObject.SetActive (false);
+		fadeObject.GetComponent<Animator> ().SetBool ("StartFade", false);
+	}
+
+	public void ShowFade()
+	{
+		fadeObject.GetComponent<Animator> ().SetBool ("StartFade", true);
 	}
 }
