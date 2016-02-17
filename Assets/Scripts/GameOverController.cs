@@ -51,7 +51,7 @@ public class GameOverController : MonoBehaviour {
 
 		content.SetActive (true);
 		title.SetActive (true);
-		SoundController.PlaySound (SoundController.soundsGame.die);
+		SoundController.PlaySound (SoundController.soundsGame.menu);
 
 	}
 

@@ -37,6 +37,7 @@ public class SoundController : MonoBehaviour {
 		case soundsGame.hit:
 			{
 				instance.GetComponent<AudioSource>().PlayOneShot (instance.soundHit);
+				instance.Invoke ("PlaySoundDie", 0.2f);
 			}
 			break;
 		case soundsGame.menu:
@@ -55,5 +56,10 @@ public class SoundController : MonoBehaviour {
 			}
 			break;
 		}
+	}
+
+	private void PlaySoundDie()
+	{
+		PlaySound (soundsGame.die);
 	}
 }
