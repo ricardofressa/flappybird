@@ -147,6 +147,15 @@ public class GameController : MonoBehaviour {
 		ResetGame ();
 	}
 
+	public void CallMainMenu()
+	{
+		SoundController.PlaySound (SoundController.soundsGame.menu);
+		gameOverController.HideGameOver ();
+		currentState = GameStates.MAINMENU;
+		mainMenu.SetActive (true);
+		player.gameObject.SetActive (false);
+	}
+
 	public void ResetGame()
 	{
 		player.position = startPositionPlayer;
