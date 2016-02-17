@@ -64,9 +64,9 @@ public class GameController : MonoBehaviour {
 		case GameStates.TUTORIAL:
 			{
 				player.position = startPositionPlayer;
-				currentTimeToRestart += Time.deltaTime;
+				currentTimeToPayAgain += Time.deltaTime;
 
-				if (currentTimeToRestart > 0.2f) {
+				if (currentTimeToPayAgain > 0.2f) {
 					currentTimeToPayAgain = 0;
 					canPlay = true;
 				}
@@ -126,8 +126,12 @@ public class GameController : MonoBehaviour {
 
 	public void CallGameOver()
 	{
-		if(currentState != GameStates.GAMEOVER)
+		if (currentState != GameStates.GAMEOVER)
+		{
 			SoundController.PlaySound (SoundController.soundsGame.hit);
+			gameOverController.ShowFade ();
+		}
+			
 
 		currentState = GameStates.GAMEOVER;
 	}
