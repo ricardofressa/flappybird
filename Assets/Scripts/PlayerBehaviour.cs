@@ -23,8 +23,10 @@ public class PlayerBehaviour : MonoBehaviour {
 	
 	void Update () {
 
-		if (Input.GetMouseButtonDown (0) && gameController.GetCurrentState () == GameStates.INGAME &&
-		    gameController.GetCurrentState () != GameStates.GAMEOVER) 
+		if (Input.GetMouseButtonDown (0) && 
+			gameController.GetCurrentState () == GameStates.INGAME &&
+		    gameController.GetCurrentState () != GameStates.GAMEOVER &&
+			Time.timeScale == 1) 
 		{
 			inAnim = true;
 			GetComponent<Rigidbody2D> ().velocity = Vector2.zero;
@@ -34,7 +36,8 @@ public class PlayerBehaviour : MonoBehaviour {
 		} 
 		else if (Input.GetMouseButtonDown (0) && 
 			gameController.GetCurrentState () == GameStates.TUTORIAL && 
-			gameController.CanPlay()) 
+			gameController.CanPlay() &&
+			Time.timeScale == 1) 
 		{
 			Restart ();
 			gameController.StartGame ();
