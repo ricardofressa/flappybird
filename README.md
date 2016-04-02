@@ -12,6 +12,6 @@ This game was created in the Unity engine, with 5.3.2f1 version. It has not been
 3. Open the project folder and RUN!
 
 # Some pictures...
-<img src="https://dl.dropboxusercontent.com/u/20234298/Screenshot_20160402-114154.png" width="320" height="240">  
-<img src="https://dl.dropboxusercontent.com/u/20234298/Screenshot_20160402-114208.png" width="320" height="240">
-<img src="https://dl.dropboxusercontent.com/u/20234298/Screenshot_20160402-114219.png" width="320" height="240">
+<img src="https://dl.dropboxusercontent.com/u/20234298/Screenshot_20160402-114154.png" width="240" height="320">  
+<img src="https://dl.dropboxusercontent.com/u/20234298/Screenshot_20160402-114208.png" width="240" height="320">
+<img src="https://dl.dropboxusercontent.com/u/20234298/Screenshot_20160402-114219.png" width="240" height="320">
